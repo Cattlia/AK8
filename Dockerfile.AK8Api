@@ -1,0 +1,31 @@
+# Stage 1: Build the application
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+
+RUN apt-get update && apt-get install -y default-mysql-client || true
+
+# Copy the project file and restore dependencies
+COPY AK8Api/*.csproj ./AK8Api/
+RUN dotnet restore ./AK8Api/AK8Api.csproj
+
+# Copy the rest of the application code
+COPY AK8Api/. ./AK8Api/
+
+# Build the application
+WORKDIR /src/AK8Api
+RUN dotnet publish -c Release -o /app
+
+# Stage 2: Create the runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+WORKDIR /app
+
+# Copy the build output from the previous stage
+COPY --from=build /app .
+
+COPY AK8Api/appsettings.json ./appsettings.json
+
+# Expose the port your API will run on
+EXPOSE 8080
+
+# Set the entry point for the container
+ENTRYPOINT ["dotnet", "AK8Api.dll"]

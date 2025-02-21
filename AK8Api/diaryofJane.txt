@@ -1,0 +1,57 @@
+//Create the api with folders.
+dotnet new webapi -o AK8Api --use-controllers --no-https
+
+//swagger - swashbuckle
+https://github.com/domaindrivendev/Swashbuckle.AspNetCore/blob/master/README.md
+https://learn.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-8.0&tabs=visual-studio
+
+//Nuget package
+dotnet add package Microsoft.EntityFrameworkCore.InMemory
+
+fakestoreapi.com/docs
+
+//HttpGet osv
+https://medium.com/@iAmrAmosh/basic-crud-api-with-net-8-and-mssql-62d2e3daab89
+
+//swagger routing solution - not
+https://www.answeroverflow.com/m/1043508555396952064
+https://github.com/springdoc/springdoc-openapi/issues/2045 
+
+//guide 
+https://www.freecodecamp.org/news/build-crud-operations-with-dotnet-core-handbook/
+
+//entity framework
+dotnet tool install --global dotnet-ef
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore
+dotnet add package Pomelo.EntityFrameworkCore.MySql
+
+// v8.0
+dotnet add package Microsoft.EntityFrameworkCore --version 8.0.2
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 8.0.2
+dotnet add package Pomelo.EntityFrameworkCore.MySql --version 8.0.2
+
+//
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+
+//
+docker tag local-image:tagname new-repo:tagname
+docker push new-repo:tagname
+
+
+//
+https://www.youtube.com/watch?v=tJsrv_kPh30
+
+
+//build locally
+docker build -t LHgokstad/nginx_image:latest -f Dockerfile.AK8Nginx .
+docker build -t LHgokstad/rest-api_image:latest -f Dockerfile.AK8Api .
+docker build -t LHgokstad/db_image:latest -f Dockerfile.AK8Mysql .
+
+
+// check if exist locally. rename if you change from filename above.
+docker images | grep lhgokstad
+
+// remove images
+for /f %i in ('docker images -q') do docker rmi -f %i

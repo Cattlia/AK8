@@ -1,0 +1,22 @@
+services:
+
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.AK8Nginx
+    image: LHgokstad/nginx_image:latest
+
+  rest-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.AK8Api
+    image: LHgokstad/rest-api_image:latest
+
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile.AK8Mysql
+    image: LHgokstad/db_image:latest
+
+
+    

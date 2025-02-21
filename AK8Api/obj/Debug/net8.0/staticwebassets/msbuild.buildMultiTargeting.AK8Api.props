@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\AK8Api.props" />
+</Project>

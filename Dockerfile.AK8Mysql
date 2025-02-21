@@ -1,0 +1,8 @@
+FROM mysql:8.0
+ENV MYSQL_ROOT_PASSWORD=root
+ENV MYSQL_DATABASE=Vehicledatabase
+ENV MYSQL_USER=user1
+ENV MYSQL_PASSWORD=user1p
+COPY AK8Mysql/init.sql /docker-entrypoint-initdb.d/
+RUN echo "[mysqld]\nlog_output=FILE\ngeneral_log=1\ngeneral_log_file=/var/log/mysql/general.log" >> /etc/mysql/my.cnf
+EXPOSE 3306

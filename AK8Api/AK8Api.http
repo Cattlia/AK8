@@ -1,0 +1,6 @@
+@AK8Api_HostAddress = http://localhost:8080
+
+GET {{AK8Api_HostAddress}}/api/cars
+Accept: application/json
+
+###

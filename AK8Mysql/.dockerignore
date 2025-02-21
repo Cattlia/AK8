@@ -1,0 +1,5 @@
+# Ignore database dumps  
+*.sql  
+
+# Ignore temporary files  
+*.tmp  
