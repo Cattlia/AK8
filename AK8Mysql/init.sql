@@ -1,5 +1,6 @@
-CREATE DATABASE IF NOT EXISTS Vehicledatabase;
-USE Vehicledatabase;
+CREATE DATABASE IF NOT EXISTS bilarkiv;
+USE bilarkiv;
+
 CREATE TABLE IF NOT EXISTS cars (
     id INT AUTO_INCREMENT PRIMARY KEY,
     type VARCHAR(50) NOT NULL,
@@ -7,13 +8,13 @@ CREATE TABLE IF NOT EXISTS cars (
     window_type VARCHAR(20) NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
+
 INSERT INTO cars (type, color, window_type) VALUES
-    ('Car', 'Red', 'Clear'),
-    ('Bus', 'Blue', 'Tinted'),
-    ('Car', 'Green', 'Clear'),
-    ('Bus', 'Yellow', 'Tinted');
+('car', 'red', 'clear'),
+('bus', 'blue', 'tinted'),
+('car', 'green', 'clear'),
+('bus', 'yellow', 'tinted');
+
 SELECT DATABASE() AS 'Current Database';
-SELECT table_name FROM information_schema.tables WHERE table_schema = 'Vehicledatabase';
-SELECT * FROM Vehicledatabase.cars;
-GRANT ALL PRIVILEGES ON Vehicledatabase.* TO 'user1'@'%';
-FLUSH PRIVILEGES;
+SELECT table_name FROM information_schema.tables WHERE table_schema = 'bilarkiv';
+SELECT * FROM bilarkiv.cars;

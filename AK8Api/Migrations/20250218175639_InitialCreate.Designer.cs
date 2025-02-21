@@ -45,7 +45,7 @@ namespace AK8Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cars");
+                    b.ToTable("cars");
                 });
 #pragma warning restore 612, 618
         }

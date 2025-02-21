@@ -1,47 +1,45 @@
 services:
   nginx:
-#      image: lhgokstad/gokktestprosjekt:nginx_image
-      build:
-        context: .
-        dockerfile: Dockerfile.AK8Nginx
+      image: lhgokstad/gokktestprosjekt:nginx_image
+#      build:
+#        context: .
+#        dockerfile: Dockerfile.AK8Nginx
       ports: 
         - "80:80"
       volumes:
         - ./AK8Nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-        - ./html:/usr/share/nginx/html
       depends_on:
         rest-api: 
           condition: service_started
       networks:
-       - jallanet    
+        - jallanet    
            
 
   rest-api:
-#    image: lhgokstad/gokktestprosjekt:rest-api_image
-    build:
-      context: .
-      dockerfile: Dockerfile.AK8Api
+    image: lhgokstad/gokktestprosjekt:rest-api_image
+#    build:
+#      context: .
+#      dockerfile: Dockerfile.AK8Api
     environment:
-      - ConnectionStrings__DefaultConnection=Server=db;Port=3306;Database=Vehicledatabase;User=user1;Password=user1p;
+      - ConnectionStrings__DefaultConnection=Server=db;Port=3306;Database=bilarkiv;User=user1;Password=user1p;
       - ASPNETCORE_ENVIRONMENT=Development
     depends_on:
       db:
         condition: service_healthy
     networks:
-      #default:
       - jallanet  
       
 
 
   db:
- #   image: lhgokstad/gokktestprosjekt:db_image
-    build:
-        context: .
-        dockerfile: Dockerfile.AK8Mysql
+    image: lhgokstad/gokktestprosjekt:db_image
+#    build:
+#        context: .
+#        dockerfile: Dockerfile.AK8Mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: Vehicledatabase
+      MYSQL_DATABASE: bilarkiv
       MYSQL_USER: user1
       MYSQL_PASSWORD: user1p
     volumes:
@@ -53,7 +51,6 @@ services:
       timeout: 5s
       retries: 3  
     networks:
-      #default:
       - jallanet
 
 volumes:
