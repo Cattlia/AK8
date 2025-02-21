@@ -1,4 +1,3 @@
-using System;
 using System.ComponentModel.DataAnnotations;
 
 public class Car
@@ -15,6 +14,5 @@ public class Car
     [Required]
     public string? WindowType { get; set; }
 
-    // This property can be optional; it will be set by the database
-    public DateTime? CreatedAt { get; set; } // Nullable to allow database to set the value
+    public DateTime? CreatedAt { get; set; }
 }

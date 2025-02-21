@@ -1,3 +1,5 @@
+Diverse gode hint, men ikke organisert.
+
 //Create the api with folders.
 dotnet new webapi -o AK8Api --use-controllers --no-https
 
